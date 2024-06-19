@@ -624,7 +624,7 @@ position_smoothing_enabled = true
 script = ExtResource("3_7iw7k")
 
 [node name="Secondplayer" parent="." instance=ExtResource("4_shj87")]
-position = Vector2(1041, -6099)
+position = Vector2(918, -6094)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 334.0
