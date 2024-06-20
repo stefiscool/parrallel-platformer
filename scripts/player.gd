@@ -8,9 +8,21 @@ const JUMP_HEIGHT = -1000
 
 var velocity2 = Vector2(0,0)
 
+@export var is_left_not_right = true
+var other_player
+var POSITION_OFFSET = 580
+
+func _ready():
+	if is_left_not_right:
+		other_player = $"../Secondplayer"
+	else:
+		other_player = $"../Player"
+		POSITION_OFFSET = -POSITION_OFFSET
+		modulate = Color(1, 1, 1, Global.hidden_opacity)
+
 
 func _physics_process(_delta):
-	if Global.goingup == true:
+	if Global.controllingleft == is_left_not_right:
 		velocity.y += GRAVITY
 		var friction = false
 		
@@ -34,4 +46,9 @@ func _physics_process(_delta):
 			
 		
 		move_and_slide()
+		var other_pos = position
+		other_pos.x += POSITION_OFFSET
+		other_player.position = other_pos
+		other_player.velocity = velocity
+		$"../SafetyNet".position.y = min($"../SafetyNet".position.y, position.y + 600)
 		
