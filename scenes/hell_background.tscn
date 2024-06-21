@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbrgwnkrxpms7"]
+
+[sub_resource type="Gradient" id="Gradient_5nxnp"]
+offsets = PackedFloat32Array(0, 0.220884, 0.497992, 0.783133, 1)
+colors = PackedColorArray(0.439216, 0.203922, 0.203922, 1, 0.184314, 0, 0, 1, 0.0941176, 0, 0, 1, 0.184314, 0, 0, 1, 0.439216, 0.203922, 0.203922, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_erhee"]
+gradient = SubResource("Gradient_5nxnp")
+fill_to = Vector2(1, 0.00854701)
+
+[node name="HellBackground" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_erhee")

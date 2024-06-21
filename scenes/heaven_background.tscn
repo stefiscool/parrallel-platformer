@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqxtq0ek8p0pe"]
+
+[sub_resource type="Gradient" id="Gradient_ktnm0"]
+colors = PackedColorArray(0.81, 0.955667, 1, 1, 0.1776, 0.45984, 0.48, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x55qn"]
+gradient = SubResource("Gradient_ktnm0")
+fill_to = Vector2(0, 1)
+
+[node name="HeavenBackground" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_x55qn")
