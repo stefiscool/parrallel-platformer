@@ -14,9 +14,9 @@ var POSITION_OFFSET = 580
 
 func _ready():
 	if is_left_not_right:
-		other_player = $"../Secondplayer"
-	else:
 		other_player = $"../Player"
+	else:
+		other_player = $"../Secondplayer"
 		POSITION_OFFSET = -POSITION_OFFSET
 		modulate = Color(1, 1, 1, Global.hidden_opacity)
 
