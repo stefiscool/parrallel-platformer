@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://barwqdk4c6gp3"]
+
+[ext_resource type="FontFile" uid="uid://cw4pwcibir3ys" path="res://assets/Final_Fantasy_3/6_Font/final_fantasy_36_font.ttf" id="1_c6egv"]
+
+[resource]
+default_font = ExtResource("1_c6egv")
+default_font_size = 50
+Fonts/fonts/large = ExtResource("1_c6egv")
+Fonts/fonts/normal = ExtResource("1_c6egv")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://k5bpckgrn8wa"]
+[gd_scene load_steps=7 format=3 uid="uid://k5bpckgrn8wa"]
 
 [ext_resource type="PackedScene" uid="uid://dhu0cyhvhykk8" path="res://scenes/cannonball.tscn" id="1_inb1x"]
+[ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="2_lxtvp"]
 
 [sub_resource type="Animation" id="Animation_57xov"]
 length = 0.001
@@ -73,7 +74,9 @@ offset_bottom = 39.0
 color = Color(0.0534209, 0.0534209, 0.0534209, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_top = -4.0
-offset_right = 127.0
-offset_bottom = 19.0
+offset_left = -8.0
+offset_right = 136.0
+offset_bottom = 23.0
+theme = ExtResource("2_lxtvp")
+theme_override_font_sizes/font_size = 25
 text = "cannon of doom"

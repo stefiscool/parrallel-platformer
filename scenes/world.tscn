@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://en1w0nse1n7o"]
+[gd_scene load_steps=23 format=3 uid="uid://en1w0nse1n7o"]
 
 [ext_resource type="Texture2D" uid="uid://cwxd1i2ygk2s6" path="res://assets/FbiOpenUpTiles (1).png" id="1_1butg"]
 [ext_resource type="PackedScene" uid="uid://k5bpckgrn8wa" path="res://scenes/cannon.tscn" id="1_5yi6p"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_7iw7k"]
 [ext_resource type="PackedScene" uid="uid://b7krp413bgjm8" path="res://scenes/secondplayer.tscn" id="4_shj87"]
 [ext_resource type="PackedScene" uid="uid://dy6611tb38e5g" path="res://scenes/movingplatform.tscn" id="5_nxnnq"]
-[ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="7_6cbi7"]
-[ext_resource type="PackedScene" path="res://scenes/hell_background.tscn" id="8_yb70b"]
+[ext_resource type="PackedScene" uid="uid://cqxtq0ek8p0pe" path="res://scenes/heaven_background.tscn" id="7_6cbi7"]
+[ext_resource type="PackedScene" uid="uid://bbrgwnkrxpms7" path="res://scenes/hell_background.tscn" id="8_yb70b"]
+[ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="9_p5sok"]
+[ext_resource type="Script" path="res://scenes/Victory.gd" id="10_apw7l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o77i0"]
 texture = ExtResource("1_1butg")
@@ -710,6 +712,9 @@ gradient = SubResource("Gradient_g7ebt")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7p6f"]
 size = Vector2(1241, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1w71"]
+size = Vector2(1234, 216)
+
 [node name="World" type="Node2D"]
 
 [node name="HeavenBackground" parent="." instance=ExtResource("7_6cbi7")]
@@ -789,9 +794,10 @@ offset_bottom = 418.0
 
 [node name="Label" type="Label" parent="ShiftControls"]
 layout_mode = 0
-offset_left = 7.0
-offset_right = 603.0
+offset_left = 61.0
+offset_right = 657.0
 offset_bottom = 55.0
+theme = ExtResource("9_p5sok")
 theme_override_font_sizes/font_size = 40
 text = "Press shift to"
 
@@ -800,6 +806,7 @@ layout_mode = 0
 offset_left = 272.0
 offset_right = 868.0
 offset_bottom = 55.0
+theme = ExtResource("9_p5sok")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "switch characters"
@@ -809,6 +816,7 @@ offset_left = 49.0
 offset_top = 214.0
 offset_right = 582.0
 offset_bottom = 283.0
+theme = ExtResource("9_p5sok")
 theme_override_font_sizes/font_size = 50
 text = "Escape Hell!"
 horizontal_alignment = 1
@@ -818,6 +826,7 @@ offset_left = 592.0
 offset_top = 215.0
 offset_right = 1129.0
 offset_bottom = 284.0
+theme = ExtResource("9_p5sok")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Reach Heaven!"
@@ -834,3 +843,12 @@ texture = SubResource("GradientTexture2D_qvxfu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyNet"]
 position = Vector2(632, -25)
 shape = SubResource("RectangleShape2D_j7p6f")
+
+[node name="Victory" type="Area2D" parent="."]
+script = ExtResource("10_apw7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Victory"]
+position = Vector2(588, -6042)
+shape = SubResource("RectangleShape2D_i1w71")
+
+[connection signal="body_entered" from="Victory" to="Victory" method="_on_body_entered"]
