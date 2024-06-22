@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://en1w0nse1n7o"]
+[gd_scene load_steps=28 format=3 uid="uid://en1w0nse1n7o"]
 
 [ext_resource type="Texture2D" uid="uid://cwxd1i2ygk2s6" path="res://assets/FbiOpenUpTiles (1).png" id="1_1butg"]
 [ext_resource type="PackedScene" uid="uid://k5bpckgrn8wa" path="res://scenes/cannon.tscn" id="1_5yi6p"]
@@ -6,10 +6,22 @@
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_7iw7k"]
 [ext_resource type="PackedScene" uid="uid://b7krp413bgjm8" path="res://scenes/secondplayer.tscn" id="4_shj87"]
 [ext_resource type="PackedScene" uid="uid://dy6611tb38e5g" path="res://scenes/movingplatform.tscn" id="5_nxnnq"]
-[ext_resource type="PackedScene" uid="uid://cqxtq0ek8p0pe" path="res://scenes/heaven_background.tscn" id="7_6cbi7"]
-[ext_resource type="PackedScene" uid="uid://bbrgwnkrxpms7" path="res://scenes/hell_background.tscn" id="8_yb70b"]
+[ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="7_6cbi7"]
+[ext_resource type="PackedScene" path="res://scenes/hell_background.tscn" id="8_yb70b"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="9_p5sok"]
-[ext_resource type="Script" path="res://scenes/Victory.gd" id="10_apw7l"]
+[ext_resource type="Script" path="res://scripts/Victory.gd" id="10_apw7l"]
+[ext_resource type="AudioStream" uid="uid://b1y5ofm858ls7" path="res://assets/Heaven_music.mp3" id="11_71usy"]
+[ext_resource type="AudioStream" uid="uid://b4ojjg0q5v2pp" path="res://assets/Hell_music.mp3" id="12_odgp1"]
+[ext_resource type="AudioStream" uid="uid://cfqjct3leuahm" path="res://assets/jump_sfx.mp3" id="13_r0e52"]
+
+[sub_resource type="Gradient" id="Gradient_g7ebt"]
+colors = PackedColorArray(0.6, 0.6, 0.6, 1, 0.6, 0.6, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qvxfu"]
+gradient = SubResource("Gradient_g7ebt")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7p6f"]
+size = Vector2(1363, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o77i0"]
 texture = ExtResource("1_1butg")
@@ -703,17 +715,57 @@ _data = {
 "move": SubResource("Animation_pxbjl")
 }
 
-[sub_resource type="Gradient" id="Gradient_g7ebt"]
-colors = PackedColorArray(0.6, 0.6, 0.6, 1, 0.6, 0.6, 0.6, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qvxfu"]
-gradient = SubResource("Gradient_g7ebt")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7p6f"]
-size = Vector2(1241, 64)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1w71"]
 size = Vector2(1234, 216)
+
+[sub_resource type="Animation" id="Animation_olu20"]
+resource_name = "MusicSyncAndLoop"
+length = 14.76
+loop_mode = 1
+step = 0.02
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeavenMusicPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_71usy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_71usy")
+}],
+"times": PackedFloat32Array(0, 7.38)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HellMusicPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_odgp1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_odgp1")
+}],
+"times": PackedFloat32Array(0, 7.38)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bqb0"]
+_data = {
+"MusicSyncAndLoop": SubResource("Animation_olu20")
+}
 
 [node name="World" type="Node2D"]
 
@@ -734,6 +786,18 @@ offset_left = 8.0
 offset_top = -246.0
 offset_right = 584.0
 offset_bottom = 402.0
+
+[node name="SafetyNet" type="StaticBody2D" parent="."]
+position = Vector2(0, 1779)
+
+[node name="Sprite2D" type="Sprite2D" parent="SafetyNet"]
+position = Vector2(604.5, -24)
+scale = Vector2(21.2969, 1)
+texture = SubResource("GradientTexture2D_qvxfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyNet"]
+position = Vector2(600.5, -25)
+shape = SubResource("RectangleShape2D_j7p6f")
 
 [node name="Cannons" type="Node2D" parent="."]
 
@@ -775,7 +839,7 @@ position = Vector2(849, 163)
 is_left_not_right = false
 
 [node name="Secondplayer" parent="." instance=ExtResource("4_shj87")]
-position = Vector2(350, 142)
+position = Vector2(347, 183)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(450, 75)
@@ -788,9 +852,9 @@ script = ExtResource("3_7iw7k")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 334.0
-offset_top = 378.0
+offset_top = 394.0
 offset_right = 374.0
-offset_bottom = 418.0
+offset_bottom = 434.0
 
 [node name="Label" type="Label" parent="ShiftControls"]
 layout_mode = 0
@@ -799,7 +863,7 @@ offset_right = 657.0
 offset_bottom = 55.0
 theme = ExtResource("9_p5sok")
 theme_override_font_sizes/font_size = 40
-text = "Press shift to"
+text = "Press Shift to"
 
 [node name="Label2" type="Label" parent="ShiftControls"]
 layout_mode = 0
@@ -812,37 +876,49 @@ theme_override_font_sizes/font_size = 40
 text = "switch characters"
 
 [node name="EscapeHellLabel" type="Label" parent="."]
-offset_left = 49.0
-offset_top = 214.0
-offset_right = 582.0
-offset_bottom = 283.0
+offset_left = -1.0
+offset_top = 447.0
+offset_right = 566.0
+offset_bottom = 517.0
 theme = ExtResource("9_p5sok")
 theme_override_font_sizes/font_size = 50
 text = "Escape Hell!"
 horizontal_alignment = 1
 
+[node name="MoveControls" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 511.0
+offset_right = 571.0
+offset_bottom = 605.0
+theme = ExtResource("9_p5sok")
+theme_override_font_sizes/font_size = 40
+text = "Move with keys
+A and D     or    ← and →
+"
+horizontal_alignment = 1
+
 [node name="ReachHeavenLabel" type="Label" parent="."]
-offset_left = 592.0
-offset_top = 215.0
-offset_right = 1129.0
-offset_bottom = 284.0
+offset_left = 598.0
+offset_top = 441.0
+offset_right = 1151.0
+offset_bottom = 511.0
 theme = ExtResource("9_p5sok")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Reach Heaven!"
 horizontal_alignment = 1
 
-[node name="SafetyNet" type="StaticBody2D" parent="."]
-position = Vector2(0, 1779)
-
-[node name="Sprite2D" type="Sprite2D" parent="SafetyNet"]
-position = Vector2(630, -24)
-scale = Vector2(19.3906, 1)
-texture = SubResource("GradientTexture2D_qvxfu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyNet"]
-position = Vector2(632, -25)
-shape = SubResource("RectangleShape2D_j7p6f")
+[node name="ReachHeavenLabel2" type="Label" parent="."]
+offset_left = 599.0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 598.0
+theme = ExtResource("9_p5sok")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Jump with keys
+W     or     ↑"
+horizontal_alignment = 1
 
 [node name="Victory" type="Area2D" parent="."]
 script = ExtResource("10_apw7l")
@@ -850,5 +926,21 @@ script = ExtResource("10_apw7l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Victory"]
 position = Vector2(588, -6042)
 shape = SubResource("RectangleShape2D_i1w71")
+
+[node name="HeavenMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"HeavenMusic"
+
+[node name="HellMusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"HellMusic"
+
+[node name="MusicSyncAndLoop" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6bqb0")
+}
+autoplay = "MusicSyncAndLoop"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r0e52")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Victory" to="Victory" method="_on_body_entered"]

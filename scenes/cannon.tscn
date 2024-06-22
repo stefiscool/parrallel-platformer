@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://k5bpckgrn8wa"]
+[gd_scene load_steps=9 format=3 uid="uid://k5bpckgrn8wa"]
 
 [ext_resource type="PackedScene" uid="uid://dhu0cyhvhykk8" path="res://scenes/cannonball.tscn" id="1_inb1x"]
+[ext_resource type="Script" path="res://scripts/cannon.gd" id="1_wd3nx"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="2_lxtvp"]
+[ext_resource type="AudioStream" uid="uid://dunpiqs8nugs0" path="res://assets/cannon_fire_sfx.mp3" id="2_umblx"]
 
 [sub_resource type="Animation" id="Animation_57xov"]
 length = 0.001
@@ -34,6 +36,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(66, 14), Vector2(-678, 14)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CannonFireSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_umblx")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oqstb"]
 _data = {
@@ -45,6 +62,7 @@ _data = {
 size = Vector2(160, 41)
 
 [node name="Cannon" type="StaticBody2D"]
+script = ExtResource("1_wd3nx")
 
 [node name="Cannonball" parent="." instance=ExtResource("1_inb1x")]
 position = Vector2(66, 14)
@@ -80,3 +98,6 @@ offset_bottom = 23.0
 theme = ExtResource("2_lxtvp")
 theme_override_font_sizes/font_size = 25
 text = "cannon of doom"
+
+[node name="CannonFireSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
