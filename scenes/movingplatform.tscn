@@ -1,18 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy6611tb38e5g"]
+[gd_scene load_steps=6 format=3 uid="uid://dy6611tb38e5g"]
+
+[ext_resource type="Texture2D" uid="uid://bk7h442hownt3" path="res://assets/platform.png" id="1_saymg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4sp"]
 size = Vector2(242, 32)
 
-[node name="Movingplatform" type="AnimatableBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e70d"]
+atlas = ExtResource("1_saymg")
+region = Rect2(0, 0, 64, 32)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -120.0
-offset_top = 3.0
-offset_right = 120.0
-offset_bottom = 35.0
-color = Color(0, 0.223529, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb0gh"]
+atlas = ExtResource("1_saymg")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ws8co"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e70d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb0gh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Movingplatform" type="AnimatableBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 21)
 shape = SubResource("RectangleShape2D_4s4sp")
 one_way_collision = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.749995, 32.5)
+scale = Vector2(3.94531, 3.15625)
+sprite_frames = SubResource("SpriteFrames_ws8co")
+autoplay = "default"

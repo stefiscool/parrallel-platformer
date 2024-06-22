@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhp6lqqix6dcf"]
 
-[ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="1_rkteq"]
+[ext_resource type="PackedScene" uid="uid://cqxtq0ek8p0pe" path="res://scenes/heaven_background.tscn" id="1_rkteq"]
 [ext_resource type="FontFile" uid="uid://cw4pwcibir3ys" path="res://assets/Final_Fantasy_3/6_Font/final_fantasy_36_font.ttf" id="2_0nstc"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="3_8dyyi"]
 [ext_resource type="Script" path="res://scripts/Button.gd" id="4_fmc2r"]

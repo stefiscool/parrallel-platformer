@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dhu0cyhvhykk8" path="res://scenes/cannonball.tscn" id="1_inb1x"]
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="1_wd3nx"]
-[ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="2_lxtvp"]
 [ext_resource type="AudioStream" uid="uid://dunpiqs8nugs0" path="res://assets/cannon_fire_sfx.mp3" id="2_umblx"]
+[ext_resource type="Texture2D" uid="uid://b57wvuupdbu05" path="res://assets/cannon.png" id="4_58pl2"]
 
 [sub_resource type="Animation" id="Animation_57xov"]
 length = 0.001
@@ -77,27 +77,10 @@ autoplay = "shoot"
 position = Vector2(70, 10.5)
 shape = SubResource("RectangleShape2D_eyhyd")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -12.0
-offset_top = -24.0
-offset_right = 148.0
-offset_bottom = 47.0
-color = Color(0.20033, 0.20033, 0.20033, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -23.0
-offset_top = -12.0
-offset_right = -13.0
-offset_bottom = 39.0
-color = Color(0.0534209, 0.0534209, 0.0534209, 1)
-
-[node name="Label" type="Label" parent="."]
-offset_left = -8.0
-offset_right = 136.0
-offset_bottom = 23.0
-theme = ExtResource("2_lxtvp")
-theme_override_font_sizes/font_size = 25
-text = "cannon of doom"
-
 [node name="CannonFireSFX" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
+
+[node name="Cannon" type="Sprite2D" parent="."]
+position = Vector2(61, 14)
+scale = Vector2(2.86816, 2.93945)
+texture = ExtResource("4_58pl2")
