@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://en1w0nse1n7o"]
+[gd_scene load_steps=28 format=3 uid="uid://en1w0nse1n7o"]
 
 [ext_resource type="Texture2D" uid="uid://cwxd1i2ygk2s6" path="res://assets/FbiOpenUpTiles (1).png" id="1_1butg"]
 [ext_resource type="PackedScene" uid="uid://k5bpckgrn8wa" path="res://scenes/cannon.tscn" id="1_5yi6p"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="7_6cbi7"]
 [ext_resource type="PackedScene" path="res://scenes/hell_background.tscn" id="8_yb70b"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="9_p5sok"]
-[ext_resource type="Script" path="res://scenes/Victory.gd" id="10_apw7l"]
+[ext_resource type="Script" path="res://scripts/Victory.gd" id="10_apw7l"]
 [ext_resource type="AudioStream" uid="uid://b1y5ofm858ls7" path="res://assets/Heaven_music.mp3" id="11_71usy"]
 [ext_resource type="AudioStream" uid="uid://b4ojjg0q5v2pp" path="res://assets/Hell_music.mp3" id="12_odgp1"]
+[ext_resource type="AudioStream" uid="uid://cfqjct3leuahm" path="res://assets/jump_sfx.mp3" id="13_r0e52"]
 
 [sub_resource type="Gradient" id="Gradient_g7ebt"]
 colors = PackedColorArray(0.6, 0.6, 0.6, 1, 0.6, 0.6, 0.6, 1)
@@ -937,5 +938,9 @@ libraries = {
 "": SubResource("AnimationLibrary_6bqb0")
 }
 autoplay = "MusicSyncAndLoop"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r0e52")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Victory" to="Victory" method="_on_body_entered"]

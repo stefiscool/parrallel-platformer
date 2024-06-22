@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const UP = Vector2(0,-1)
-const GRAVITY = 30
+const GRAVITY = 28
 const MAX_SPEED = 250
 const ACCELERATION = 50
 const JUMP_HEIGHT = -1000
@@ -43,6 +43,7 @@ func _physics_process(_delta):
 				velocity.x = lerp(velocity.x,0.0,0.2)
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_HEIGHT
+				$"../JumpSFX".play()
 			
 		
 		move_and_slide()

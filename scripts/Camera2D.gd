@@ -2,8 +2,8 @@ extends Camera2D
 
 var MUSIC_MIN_VOLUME = -21.0
 var VOLUME_CHANGE_RATE = 42.0
-var heaven_target_volume = 0
-var hell_target_volume = MUSIC_MIN_VOLUME
+var heaven_target_volume = MUSIC_MIN_VOLUME
+var hell_target_volume = 0
 var heaven_music = AudioServer.get_bus_index("HeavenMusic")
 var hell_music = AudioServer.get_bus_index("HellMusic")
 
@@ -47,6 +47,11 @@ func _process(delta):
 	elif hell_target_volume < hell_music_actual_volume:
 		hell_new_volume = max(hell_target_volume, hell_music_actual_volume - volume_change)
 	set_music_mix(heaven_new_volume, hell_new_volume)
+	
+	var cannons = $"../Cannons".get_children()
+	assert(cannons.size() > 0, "There are no cannons on the object Camera2D/../Cannons!")
+	for cannon in cannons:
+		cannon.check_player_range($"../Player".global_position)
 
 func try_swap_player(to_become, currently_is, become_left_not_right):
 	# test if non-active player would be able to move 0px (aka overlaps with an obstacle)

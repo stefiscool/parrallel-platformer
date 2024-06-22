@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhu0cyhvhykk8"]
 
-[ext_resource type="Script" path="res://scenes/cannonball.gd" id="1_a7s5t"]
+[ext_resource type="Script" path="res://scripts/cannonball.gd" id="1_a7s5t"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ogxv"]
 radius = 16.0312
