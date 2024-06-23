@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://63wgyoy41k7r"]
+[gd_scene load_steps=17 format=3 uid="uid://3sn6afewswae"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_1ht0x"]
 [ext_resource type="Texture2D" uid="uid://bvju0v185ys4u" path="res://assets/coin.png" id="1_03t5m"]
@@ -112,3 +112,4 @@ autoplay = "default"
 frame_progress = 0.790222
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
