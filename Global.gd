@@ -4,12 +4,34 @@ var controllingleft = true
 var hidden_opacity = 0.3
 var coins = 0
 var checkpoint = null
-var safety_net_offset = 800
+var start_location
+var danger_net_offset = 1000
+var newly_collected_coins = []
 
 func return_to_checkpoint():
 	$"../World/PlayerDiedSFX".play()
 	var hellplayer = $"../World/Secondplayer"
-	hellplayer.position = checkpoint.position
-	hellplayer.position.y -= 70
+	if checkpoint == null:
+		hellplayer.position = start_location
+	else:
+		hellplayer.position = checkpoint.position
+		hellplayer.position.y -= 70
+	$"../World/Camera2D".become_left_player()
 	hellplayer.velocity = Vector2()
-	$"../World/SafetyNet".position.y = hellplayer.position.y + Global.safety_net_offset
+	$"../World/DangerNet".position.y = hellplayer.position.y + Global.danger_net_offset
+	# reset coins collected since reaching checkpoint
+	coins -= newly_collected_coins.size()
+	for coin in newly_collected_coins:
+		coin.visible = true
+	newly_collected_coins = []
+
+func reach_checkpoint(chkpoint):
+	checkpoint = chkpoint
+	# coins become "locked-in"
+	newly_collected_coins = []
+
+func coin_collected(coin):
+	$"../World/CoinCollectSFX".play()
+	newly_collected_coins.push_back(coin)
+	coin.visible = false
+	coins += 1

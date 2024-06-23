@@ -15,13 +15,16 @@ func set_music_mix(heaven_db, hell_db):
 	AudioServer.set_bus_volume_db(hell_music, hell_db)
 
 
+func become_left_player():
+	try_swap_player($"../Secondplayer", $"../Player", true)
+
 func _process(delta):
 	position.y = $"../Player".position.y
 	if Input.is_action_just_pressed("switch") and Global.controllingleft == true:
 		try_swap_player($"../Player", $"../Secondplayer", false)
 
 	elif Input.is_action_just_pressed("switch") and Global.controllingleft == false:
-		try_swap_player($"../Secondplayer", $"../Player", true)
+		become_left_player()
 	
 	var viewport_size = get_viewport().get_visible_rect().size
 	var right_half = get_screen_center_position()
