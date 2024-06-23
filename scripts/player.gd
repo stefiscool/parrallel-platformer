@@ -8,8 +8,6 @@ const JUMP_HEIGHT = -1000
 
 const SAFETY_NET_FALL = 25
 
-var velocity2 = Vector2(0,0)
-
 @export var is_left_not_right = true
 var other_player
 var POSITION_OFFSET = 580
@@ -30,10 +28,14 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed("right"):
 			velocity.x = min(velocity.x + ACCELERATION, MAX_SPEED)
+			$ColorRect.scale.x = -abs($ColorRect.scale.x)
+			other_player.get_node("ColorRect").scale.x = -abs(other_player.get_node("ColorRect").scale.x)
 
 
 		elif Input.is_action_pressed("left"):
-			velocity.x = min(velocity.x + ACCELERATION, -MAX_SPEED)
+			velocity.x = max(velocity.x - ACCELERATION, -MAX_SPEED)
+			$ColorRect.scale.x = abs($ColorRect.scale.x)
+			other_player.get_node("ColorRect").scale.x = abs(other_player.get_node("ColorRect").scale.x)
 
 			
 		else:
@@ -46,12 +48,11 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_HEIGHT
 				$"../JumpSFX".play()
-			
 		
 		move_and_slide()
 		var other_pos = position
 		other_pos.x += POSITION_OFFSET
 		other_player.position = other_pos
 		other_player.velocity = velocity
-		$"../SafetyNet".position.y = min($"../SafetyNet".position.y + SAFETY_NET_FALL * delta, position.y + 800)
+		$"../SafetyNet".position.y = min($"../SafetyNet".position.y + SAFETY_NET_FALL * delta, position.y + Global.safety_net_offset)
 		

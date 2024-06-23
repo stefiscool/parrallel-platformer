@@ -13,14 +13,16 @@ script = ExtResource("1_7echy")
 position = Vector2(-1, -22)
 shape = SubResource("CapsuleShape2D_jsda6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
 offset_left = -35.0
 offset_top = -69.0
 offset_right = 33.0
 offset_bottom = 24.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect2" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 21.0
@@ -28,7 +30,7 @@ offset_right = 25.0
 offset_bottom = 30.0
 color = Color(1, 0, 0, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect6" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -37,7 +39,7 @@ offset_bottom = 13.0
 rotation = 0.415859
 color = Color(1, 0, 0, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect7" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 16.0
@@ -46,7 +48,7 @@ offset_bottom = 19.0
 rotation = -0.354772
 color = Color(1, 0, 0, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect3" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 21.0
@@ -54,7 +56,7 @@ offset_right = 52.0
 offset_bottom = 31.0
 color = Color(1, 0, 0, 1)
 
-[node name="ColorRect4" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect4" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 41.0
@@ -62,7 +64,7 @@ offset_right = 57.0
 offset_bottom = 53.0
 color = Color(1, 0, 0, 1)
 
-[node name="ColorRect5" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect5" type="ColorRect" parent="ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 37.0
