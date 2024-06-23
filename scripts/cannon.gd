@@ -10,4 +10,4 @@ func check_player_range(global_player_pos):
 			animator.play()
 	else:
 		if animator.is_playing():
-			animator.stop()
+			animator.pause()

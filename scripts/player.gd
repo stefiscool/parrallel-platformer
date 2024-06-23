@@ -51,5 +51,5 @@ func _physics_process(_delta):
 		other_pos.x += POSITION_OFFSET
 		other_player.position = other_pos
 		other_player.velocity = velocity
-		$"../SafetyNet".position.y = min($"../SafetyNet".position.y, position.y + 600)
+		$"../SafetyNet".position.y = min($"../SafetyNet".position.y, position.y + 800)
 		

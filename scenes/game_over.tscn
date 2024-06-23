@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbkqaacoytkft"]
 
 [ext_resource type="Script" path="res://scripts/Button.gd" id="1_lttxb"]
-[ext_resource type="PackedScene" uid="uid://bbrgwnkrxpms7" path="res://scenes/hell_background.tscn" id="1_vj6bt"]
+[ext_resource type="PackedScene" path="res://scenes/hell_background.tscn" id="1_vj6bt"]
 [ext_resource type="FontFile" uid="uid://cw4pwcibir3ys" path="res://assets/Final_Fantasy_3/6_Font/final_fantasy_36_font.ttf" id="2_evih7"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="3_mt1dt"]
 [ext_resource type="AudioStream" uid="uid://cct116ymxebrd" path="res://assets/death_sfx.mp3" id="5_71hch"]
