@@ -7,6 +7,7 @@ var checkpoint = null
 var start_location
 var danger_net_offset = 1000
 var newly_collected_coins = []
+var level = 1
 
 func return_to_checkpoint():
 	$"../World/PlayerDiedSFX".play()
@@ -21,8 +22,8 @@ func return_to_checkpoint():
 	$"../World/DangerNet".position.y = hellplayer.position.y + Global.danger_net_offset
 	# reset coins collected since reaching checkpoint
 	coins -= newly_collected_coins.size()
-	for coin in newly_collected_coins:
-		coin.visible = true
+	#for coin in newly_collected_coins:
+		#coin.visible = true
 	newly_collected_coins = []
 
 func reach_checkpoint(chkpoint):

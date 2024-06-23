@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://ii4spyox8dvs"]
 
-[ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="1_bykit"]
-[ext_resource type="PackedScene" path="res://scenes/hell_background.tscn" id="2_p1v1l"]
+[ext_resource type="PackedScene" uid="uid://cqxtq0ek8p0pe" path="res://scenes/heaven_background.tscn" id="1_bykit"]
+[ext_resource type="PackedScene" uid="uid://bbrgwnkrxpms7" path="res://scenes/hell_background.tscn" id="2_p1v1l"]
 [ext_resource type="Texture2D" uid="uid://cwxd1i2ygk2s6" path="res://assets/FbiOpenUpTiles (1).png" id="3_jijjx"]
 [ext_resource type="PackedScene" uid="uid://k5bpckgrn8wa" path="res://scenes/cannon.tscn" id="4_maluj"]
 [ext_resource type="PackedScene" uid="uid://3sn6afewswae" path="res://scenes/coin.tscn" id="5_qprbc"]
