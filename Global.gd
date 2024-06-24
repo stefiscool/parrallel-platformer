@@ -22,8 +22,8 @@ func return_to_checkpoint():
 	$"../World/DangerNet".position.y = hellplayer.position.y + Global.danger_net_offset
 	# reset coins collected since reaching checkpoint
 	coins -= newly_collected_coins.size()
-	#for coin in newly_collected_coins:
-		#coin.visible = true
+	for coin in newly_collected_coins:
+		coin.visible = true
 	newly_collected_coins = []
 
 func reach_checkpoint(chkpoint):

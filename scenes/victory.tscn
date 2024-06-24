@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhp6lqqix6dcf"]
+[gd_scene load_steps=8 format=3 uid="uid://bhp6lqqix6dcf"]
 
-[ext_resource type="PackedScene" uid="uid://cqxtq0ek8p0pe" path="res://scenes/heaven_background.tscn" id="1_rkteq"]
+[ext_resource type="PackedScene" path="res://scenes/heaven_background.tscn" id="1_rkteq"]
 [ext_resource type="FontFile" uid="uid://cw4pwcibir3ys" path="res://assets/Final_Fantasy_3/6_Font/final_fantasy_36_font.ttf" id="2_0nstc"]
 [ext_resource type="Theme" uid="uid://barwqdk4c6gp3" path="res://assets/theme.tres" id="3_8dyyi"]
 [ext_resource type="Script" path="res://scenes/NextLevel.gd" id="5_1rnn0"]
 [ext_resource type="AudioStream" uid="uid://cwah38g3yf6et" path="res://assets/victory_celebrate_sfx.mp3" id="5_r6o2p"]
+[ext_resource type="Script" path="res://scripts/Victory_CoinsCollected.gd" id="6_up2kh"]
+[ext_resource type="PackedScene" uid="uid://3sn6afewswae" path="res://scenes/coin.tscn" id="7_n1seb"]
 
 [node name="Victory" type="Node2D"]
 
@@ -21,27 +23,27 @@ grow_vertical = 1
 
 [node name="Label" type="Label" parent="."]
 offset_left = 77.0
-offset_top = 23.0
+offset_top = 17.0
 offset_right = 1065.0
-offset_bottom = 287.0
+offset_bottom = 281.0
 theme_override_fonts/font = ExtResource("2_0nstc")
 theme_override_font_sizes/font_size = 300
 text = "YOU WIN!"
 
 [node name="NextLevel" type="Button" parent="."]
-offset_left = 357.0
-offset_top = 458.0
-offset_right = 714.0
-offset_bottom = 587.0
+offset_left = 359.0
+offset_top = 488.0
+offset_right = 716.0
+offset_bottom = 617.0
 theme = ExtResource("3_8dyyi")
 text = "Next Level"
 script = ExtResource("5_1rnn0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 424.0
-offset_top = 303.0
-offset_right = 489.0
-offset_bottom = 398.0
+offset_left = 423.0
+offset_top = 252.0
+offset_right = 488.0
+offset_bottom = 347.0
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 layout_mode = 0
@@ -100,10 +102,10 @@ offset_bottom = 28.0
 color = Color(0, 0, 1, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 555.0
-offset_top = 305.0
-offset_right = 623.0
-offset_bottom = 398.0
+offset_left = 552.0
+offset_top = 251.0
+offset_right = 620.0
+offset_bottom = 344.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect2"]
@@ -161,5 +163,18 @@ color = Color(1, 0, 0, 1)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_r6o2p")
 autoplay = true
+
+[node name="CoinsCollected" type="Label" parent="."]
+offset_left = 445.0
+offset_top = 397.0
+offset_right = 797.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("2_0nstc")
+theme_override_font_sizes/font_size = 64
+text = "Collected:"
+script = ExtResource("6_up2kh")
+
+[node name="Coin" parent="CoinsCollected" instance=ExtResource("7_n1seb")]
+position = Vector2(-65, 27)
 
 [connection signal="pressed" from="NextLevel" to="NextLevel" method="_on_pressed"]
