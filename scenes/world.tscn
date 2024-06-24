@@ -1041,7 +1041,7 @@ position = Vector2(987, 298)
 is_left_not_right = false
 
 [node name="Secondplayer" parent="." instance=ExtResource("4_shj87")]
-position = Vector2(305, -4099)
+position = Vector2(417, 276)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(450, 75)
