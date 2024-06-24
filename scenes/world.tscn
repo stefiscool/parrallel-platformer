@@ -792,52 +792,6 @@ _data = {
 "move": SubResource("Animation_pxbjl")
 }
 
-[sub_resource type="Gradient" id="Gradient_g7ebt"]
-colors = PackedColorArray(0.907249, 0.171289, 3.85046e-07, 1, 1, 0.141176, 0.513726, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qvxfu"]
-gradient = SubResource("Gradient_g7ebt")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7p6f"]
-size = Vector2(1363, 64)
-
-[sub_resource type="Animation" id="Animation_1tody"]
-resource_name = "MoveLava"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(604.5, 665), Vector2(604.5, 655), Vector2(604.5, 665)]
-}
-
-[sub_resource type="Animation" id="Animation_57xdi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(604.5, 655)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p67b8"]
-_data = {
-"MoveLava": SubResource("Animation_1tody"),
-"RESET": SubResource("Animation_57xdi")
-}
-
 [sub_resource type="Animation" id="Animation_olu20"]
 resource_name = "MusicSyncAndLoop"
 length = 14.76
@@ -885,6 +839,52 @@ tracks/1/use_blend = true
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6bqb0"]
 _data = {
 "MusicSyncAndLoop": SubResource("Animation_olu20")
+}
+
+[sub_resource type="Gradient" id="Gradient_g7ebt"]
+colors = PackedColorArray(0.907249, 0.171289, 3.85046e-07, 1, 1, 0.141176, 0.513726, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qvxfu"]
+gradient = SubResource("Gradient_g7ebt")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7p6f"]
+size = Vector2(1363, 64)
+
+[sub_resource type="Animation" id="Animation_1tody"]
+resource_name = "MoveLava"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(604.5, 665), Vector2(604.5, 655), Vector2(604.5, 665)]
+}
+
+[sub_resource type="Animation" id="Animation_57xdi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(604.5, 655)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p67b8"]
+_data = {
+"MoveLava": SubResource("Animation_1tody"),
+"RESET": SubResource("Animation_57xdi")
 }
 
 [node name="World" type="Node2D"]
@@ -1015,26 +1015,6 @@ libraries = {
 "": SubResource("AnimationLibrary_7voh5")
 }
 autoplay = "move"
-
-[node name="DangerNet" type="Area2D" parent="."]
-position = Vector2(0, 1779)
-script = ExtResource("3_5bc72")
-
-[node name="Sprite2D" type="Sprite2D" parent="DangerNet"]
-position = Vector2(604.5, 655)
-scale = Vector2(21.2969, 22.5313)
-texture = SubResource("GradientTexture2D_qvxfu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerNet"]
-visible = false
-position = Vector2(600.5, -25)
-shape = SubResource("RectangleShape2D_j7p6f")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DangerNet"]
-libraries = {
-"": SubResource("AnimationLibrary_p67b8")
-}
-autoplay = "MoveLava"
 
 [node name="Player" parent="." instance=ExtResource("2_rhicg")]
 position = Vector2(987, 298)
@@ -1175,6 +1155,34 @@ bus = &"SFX"
 stream = ExtResource("18_ft7n6")
 bus = &"SFX"
 
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("20_sjdoo")]
+position = Vector2(181, -1234)
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("20_sjdoo")]
+position = Vector2(153, -4209)
+
+[node name="DangerNet" type="Area2D" parent="."]
+position = Vector2(0, 1779)
+script = ExtResource("3_5bc72")
+
+[node name="Sprite2D" type="Sprite2D" parent="DangerNet"]
+position = Vector2(604.5, 655)
+scale = Vector2(21.2969, 22.5313)
+texture = SubResource("GradientTexture2D_qvxfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerNet"]
+visible = false
+position = Vector2(600.5, -25)
+shape = SubResource("RectangleShape2D_j7p6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DangerNet"]
+libraries = {
+"": SubResource("AnimationLibrary_p67b8")
+}
+autoplay = "MoveLava"
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
@@ -1193,14 +1201,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 16
 text = "Coins:"
 script = ExtResource("14_fk56f")
-
-[node name="Checkpoints" type="Node2D" parent="."]
-
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("20_sjdoo")]
-position = Vector2(181, -1234)
-
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("20_sjdoo")]
-position = Vector2(153, -4209)
 
 [connection signal="body_entered" from="Victory" to="Victory" method="_on_body_entered"]
 [connection signal="body_entered" from="DangerNet" to="DangerNet" method="_on_body_entered"]
