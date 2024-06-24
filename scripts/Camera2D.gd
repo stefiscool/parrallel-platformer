@@ -14,6 +14,8 @@ func set_music_mix(heaven_db, hell_db):
 	AudioServer.set_bus_volume_db(heaven_music, heaven_db)
 	AudioServer.set_bus_volume_db(hell_music, hell_db)
 
+func force_become_left_player():
+	force_swap_player($"../Secondplayer", $"../Player", true)
 
 func become_left_player():
 	try_swap_player($"../Secondplayer", $"../Player", true)
@@ -59,19 +61,22 @@ func _process(delta):
 func try_swap_player(to_become, currently_is, become_left_not_right):
 	# test if non-active player would be able to move 0px (aka overlaps with an obstacle)
 	if not to_become.test_move(to_become.transform, Vector2()):
-		Global.controllingleft = become_left_not_right
-		for coin in $"../Coins".get_children():
-			coin.collect_if_overlap()
-		$"../SwapSFX".play()
-		if become_left_not_right:
-			hell_target_volume = 0
-			heaven_target_volume = MUSIC_MIN_VOLUME
-		else:
-			heaven_target_volume = 0
-			hell_target_volume = MUSIC_MIN_VOLUME
-		global_position.x = to_become.global_position.x
-		global_position.y = to_become.global_position.y
-		to_become.modulate = Color(1, 1, 1, 1)
-		currently_is.modulate = Color(1, 1, 1, Global.hidden_opacity)
+		force_swap_player(to_become, currently_is, become_left_not_right)
 	else:
 		$"../SwapFailedSFX".play()
+
+func force_swap_player(to_become, currently_is, become_left_not_right):
+	Global.controllingleft = become_left_not_right
+	for coin in $"../Coins".get_children():
+		coin.collect_if_overlap()
+	$"../SwapSFX".play()
+	if become_left_not_right:
+		hell_target_volume = 0
+		heaven_target_volume = MUSIC_MIN_VOLUME
+	else:
+		heaven_target_volume = 0
+		hell_target_volume = MUSIC_MIN_VOLUME
+	global_position.x = to_become.global_position.x
+	global_position.y = to_become.global_position.y
+	to_become.modulate = Color(1, 1, 1, 1)
+	currently_is.modulate = Color(1, 1, 1, Global.hidden_opacity)

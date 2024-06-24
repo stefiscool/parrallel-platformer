@@ -17,7 +17,7 @@ func return_to_checkpoint():
 	else:
 		hellplayer.position = checkpoint.position
 		hellplayer.position.y -= 70
-	$"../World/Camera2D".become_left_player()
+	$"../World/Camera2D".force_become_left_player()
 	hellplayer.velocity = Vector2()
 	$"../World/DangerNet".position.y = hellplayer.position.y + Global.danger_net_offset
 	# reset coins collected since reaching checkpoint
